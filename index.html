@@ -9,320 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
   
-  <style>
-    :root {
-      --primary: #4B3F72;
-      --accent: #B388EB;
-      --yellow: #FFC107;
-      --dark: #333;
-      --light: #fff;
-      --bg: #F9F7F0;
-      --gray: #ddd;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      background-color: var(--bg);
-      color: var(--primary);
-      line-height: 1.6;
-    }
-
-    .container {
-      width: min(90%, 1200px);
-      margin: 0 auto;
-    }
-
-    /* === ШАПКА === */
-    header {
-      background: var(--dark);
-      color: var(--light);
-      padding: 0.8rem 0;
-    }
-
-    .header-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      width: min(90%, 1200px);
-      margin: 0 auto;
-    }
-
-    .logo {
-      font-weight: 700;
-      font-size: 1.3rem;
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-    }
-
-    .logo span {
-      color: var(--accent);
-    }
-
-    .nav-menu {
-      display: flex;
-      gap: 1.4rem;
-      list-style: none;
-    }
-
-    .nav-menu a {
-      color: var(--light);
-      text-decoration: none;
-      font-size: 0.9rem;
-      transition: color 0.2s;
-    }
-
-    .nav-menu a:hover {
-      color: var(--accent);
-    }
-
-    .header-right {
-      display: flex;
-      align-items: center;
-      gap: 1.2rem;
-    }
-
-    .phone {
-      font-weight: 600;
-      white-space: nowrap;
-    }
-
-    .btn-yellow {
-      background: var(--yellow);
-      color: var(--dark);
-      padding: 0.6rem 1.6rem;
-      border-radius: 30px;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 0.95rem;
-      transition: transform 0.2s;
-    }
-
-    .btn-yellow:hover {
-      transform: translateY(-2px);
-    }
-
-    /* === Центральный блок === */
-    .intro {
-      text-align: center;
-      padding: 3rem 0;
-      background: var(--light);
-    }
-
-    .intro h1 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2.4rem;
-      color: var(--primary);
-      margin-bottom: 1rem;
-    }
-
-    .intro p {
-      max-width: 600px;
-      margin: 0 auto;
-      font-size: 1.1rem;
-      color: #555;
-    }
-
-    /* === Карточки FDM / Resin === */
-    .tech-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2rem;
-      padding: 2rem 0;
-    }
-
-    .tech-card {
-      background: var(--light);
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    }
-
-    .tech-img {
-      height: 290px;
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-    }
-
-    /* 🔸 Пути к изображениям — от index.html */
-    .tech-fdm .tech-img {
-      background-image: url('assets/FDM.png');
-    }
-
-    .tech-resin .tech-img {
-      background-image: url('assets/Resin.png');
-    }
-
-    .tech-content {
-      padding: 1.8rem;
-    }
-
-    .tech-content h3 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.5rem;
-      margin-bottom: 0.8rem;
-      color: var(--primary);
-    }
-
-    .tech-content p {
-      margin-bottom: 1.2rem;
-      color: #555;
-    }
-
-    /* === Главная кнопка === */
-    .main-btn-wrap {
-      text-align: center;
-      margin: 3rem 0;
-    }
-
-    .main-btn {
-      display: inline-block;
-      color: #d32f2f;
-      text-decoration: underline;
-      font-weight: 600;
-      font-size: 1.1rem;
-      padding: 0.3rem 0;
-      transition: opacity 0.3s;
-    }
-
-    .main-btn:hover {
-      opacity: 0.8;
-      text-decoration: none;
-    }
-
-    /* === Модальное окно (чистый CSS) === */
-    #modal {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.7);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.4s ease;
-      z-index: 100;
-    }
-
-    #modal:target {
-      opacity: 1;
-      visibility: visible;
-    }
-
-    .modal-content {
-      background: var(--light);
-      width: min(90%, 500px);
-      border-radius: 16px;
-      padding: 2.5rem;
-      position: relative;
-      transform: translateY(20px);
-      transition: transform 0.4s ease;
-    }
-
-    #modal:target .modal-content {
-      transform: translateY(0);
-    }
-
-    /* 🔸 Крестик — теперь ссылка! */
-    .close-modal {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      font-size: 1.5rem;
-      text-decoration: none;
-      color: #666;
-      cursor: pointer;
-    }
-
-    .close-modal:hover {
-      color: #333;
-    }
-
-    .modal-content h2 {
-      font-family: 'Cormorant Garamond', serif;
-      color: var(--primary);
-      margin-bottom: 1.5rem;
-      text-align: center;
-    }
-
-    /* === Форма === */
-    .form-group {
-      margin-bottom: 1.2rem;
-    }
-
-    .form-group label {
-      display: block;
-      margin-bottom: 0.4rem;
-      font-weight: 500;
-    }
-
-    .form-group input,
-    .form-group select,
-    .form-group textarea {
-      width: 100%;
-      padding: 0.7rem;
-      border: 1px solid var(--gray);
-      border-radius: 8px;
-      font-family: inherit;
-    }
-
-    .btn-submit {
-      width: 100%;
-      background: var(--accent);
-      color: var(--light);
-      padding: 0.8rem;
-      border: none;
-      border-radius: 8px;
-      font-weight: 600;
-      font-size: 1rem;
-      cursor: pointer;
-    }
-
-    .btn-submit:hover {
-      opacity: 0.9;
-    }
-
-    /* === Футер === */
-    footer {
-      text-align: center;
-      padding: 2rem 0;
-      color: #666;
-      font-size: 0.9rem;
-      background: var(--light);
-    }
-
-    /* === Адаптивность === */
-    @media (max-width: 768px) {
-      .header-container {
-        flex-direction: column;
-        gap: 1rem;
-      }
-      .header-right {
-        justify-content: space-between;
-        width: 100%;
-      }
-      .nav-menu {
-        flex-wrap: wrap;
-        justify-content: center;
-      }
-      .tech-grid {
-        grid-template-columns: 1fr;
-      }
-      .main-btn {
-        font-size: 1rem;
-      }
-    }
-  </style>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
@@ -335,12 +22,14 @@
       </div>
       <ul class="nav-menu">
         <li><a href="#services">Услуги</a></li>
+ 
         <li><a href="#promo">Прайс</a></li>
-        <li><a href="#works">Примеры работ</a></li>
+        <li><a href="works.html">Примеры работ</a></li>
         <li><a href="#reviews">О нас</a></li>
+ 
       </ul>
       <div class="header-right">
-        <div class="phone">+7 999 999-99-99</div>
+        <div class="phone">+7 978 607-42-24</div>
         <a href="#modal" class="btn-yellow">Оставить заявку</a>
       </div>
     </div>
@@ -350,7 +39,7 @@
   <section class="intro">
     <div class="container">
       <h1>Точность в каждой детали</h1>
-      <p>Выберите технологию — и получите изделие вашей мечты <br>(ﾉ◕ヮ◕)ﾉ*:･ﾟ✧</p>
+      <p>Выберите технологию — и получите изделие вашей мечты <br>(ﾉ◕ヮ◕)ﾉ*:･ﾟ✧ </p>
     </div>
   </section>
 
@@ -362,7 +51,7 @@
         <div class="tech-img"></div>
         <div class="tech-content">
           <h3>FDM (филамент)</h3>
-          <p>Надёжная печать для крупных моделей. Прочность, доступность, быстрое изготовление.</p>
+          <p>Надёжная печать для крупных моделей. Прочность, доступность, .</p>
         </div>
       </div>
 
@@ -377,15 +66,16 @@
     </div>
   </section>
 
-  <!-- ЕДИНСТВЕННАЯ КНОПКА -->
+  <!-- КНОПКА -->
   <div class="main-btn-wrap">
     <a href="#modal" class="btn-yellow">Свяжитесь с нами! ;)</a>
   </div>
 
-  <!-- МОДАЛЬНОЕ ОКНО -->
+  <!-- модалОчка -->
   <div id="modal">
     <div class="modal-content">
-      <!-- 🔸 КРЕСТИК — ССЫЛКА! -->
+	
+      <!-- закрытие модалки как ссылка, тот еще костыль, по-хорошему нужно джава-->
       <a href="#" class="close-modal" aria-label="Закрыть">&times;</a>
       <h2>Оставить заявку</h2>
       <form>
@@ -415,9 +105,9 @@
     </div>
   </div>
 
-  <!-- ФУТЕР -->
+  
   <footer>
-    <p>3D Print | Лендинг свёрстан на чистом HTML/CSS</p>
+    <p>Верстка на HTML/CSS, базы данных не подключены. </p>
   </footer>
 
 </body>
