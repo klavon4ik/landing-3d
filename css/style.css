@@ -59,6 +59,9 @@ header {
   display: flex;
   gap: 1.4rem;
   list-style: none;
+ 
+  justify-content: center;
+  gap: 20px;
 }
 
 .nav-menu a {

@@ -25,14 +25,42 @@
       <ul class="nav-menu">
         <li><a href="index.html">Услуги</a> </li>
  
-        <li><a href="#promo">Прайс</a></li>
-        <li><a href="works">Примеры работ</a></li>
-        <li><a href="index.html">О нас</a></li>
- 
       </ul>
       <div class="header-right">
         <div class="phone">+7 978 607-42-24</div>
         <a href="#modal" class="btn-yellow">Оставить заявку</a>
+		  <div id="modal">
+    <div class="modal-content">
+	
+      <!-- закрытие модалки как ссылка, тот еще костыль, по-хорошему нужно джава-->
+      <a href="#" class="close-modal" aria-label="Закрыть">&times;</a>
+      <h2>Оставить заявку</h2>
+      <form>
+        <div class="form-group">
+          <label for="name">Имя</label>
+          <input type="text" id="name" required>
+        </div>
+        <div class="form-group">
+          <label for="contact">Email / Telegram</label>
+          <input type="text" id="contact" required>
+        </div>
+        <div class="form-group">
+          <label for="tech">Технология печати</label>
+          <select id="tech" required>
+            <option value="">— Выберите —</option>
+            <option value="fdm">FDM (филамент)</option>
+            <option value="resin">Resin (смола)</option>
+            <option value="unsure">Пока не знаю</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="desc">Описание модели</label>
+          <textarea id="desc" rows="3" placeholder="Размер, тема, файл .stl — или просто идея"></textarea>
+        </div>
+        <button type="submit" class="btn-submit">Отправить запрос</button>
+      </form>
+    </div>
+  </div>
       </div>
     </div>
 	
